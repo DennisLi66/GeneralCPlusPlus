@@ -8,7 +8,12 @@
 using namespace std;
 /* 
 ZELLERS CONGRUENCE
-h = (1+13(m+1)/5 + K + K/4 + J/4 + 5J)modulo 7
+h = (q+13(m+1)/5 + K + K/4 + J/4 + 5J)modulo 7
+h = day of week
+q is the day of the month
+m is the month (3 = March, 4 = April, 5 = May, ..., 14 = February)
+K the year of the century (year mod 100)
+J is the zero-based century (first two numbers of year) or (year / 100)
 
 LEAP YEARS
 if (year is not divisible by 4) then (it is a common year)
@@ -49,22 +54,36 @@ bool checkDayExists(int day, int month, int year){
     }
     return false;
 }
-
 int getMonth(){
     time_t now = time(0);
     tm *ltm = localtime(&now);
     return 1 + ltm->tm_mon;
 }
-
 int getYear(){
     time_t now = time(0);
     tm *ltm = localtime(&now);
     return 1900 + ltm->tm_year;
 }
+int zellersCongruence(int month, int year){
+    int final = 0;
+    string days[] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    final += 1; //step 1
+    final += ((13 * (month + 1))/5); //step 2
+    final += (year%100); //step 3
+    final += (year%100)/4; //step 4
+    final += (year/100)/4; //step 5
+    final += 5 * (year/100); //step 6
+    final = final%7;
+    // cout << final << "=" << 1 << " + " << ((13 * (month + 1))/5) << " + " << year % 100 << " + " << (year % 100)/4 <<  " + " << (year/100)/4 << " + " << 5 * (year/100) << endl;
+    cout << days[final] << endl;
+    return final;
+}
 
 bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month-1] << " of Year " << year << endl;
+    cout << "  S  M  T  W  T  F  S  " << endl;
+    // cout << zellersCongruence(2,2021) << endl;
     return true;
 }
 
