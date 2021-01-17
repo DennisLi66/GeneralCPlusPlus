@@ -64,7 +64,7 @@ int getYear(){
 
 bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
-    cout << months[month] << " of Year " << year << endl;
+    cout << months[month-1] << " of Year " << year << endl;
     return true;
 }
 
@@ -81,8 +81,9 @@ bool runCalendar(){
         if (response == "Y" || response == "y"){
             cout << "Using Today's Date:" << endl;
             month = getMonth();
-            cout << "Current Month is " << getMonth() << endl;
-            cout << "Current Year is " << getYear() << endl;
+            year = getYear();
+            // cout << "Current Month is " << month << endl;
+            // cout << "Current Year is " << year << endl;
             printCalendar(month,year);
 
 
