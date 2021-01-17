@@ -8,7 +8,7 @@
 using namespace std;
 /* 
 ZELLERS CONGRUENCE
-h = (q+13(m+1)/5 + K + K/4 + J/4 + 5J)modulo 7
+h = (q+ 13(m+1)/5 + K + K/4 + J/4 + 5J)modulo 7
 h = day of week
 q is the day of the month
 m is the month (3 = March, 4 = April, 5 = May, ..., 14 = February)
@@ -104,8 +104,12 @@ bool runCalendar(){
             // cout << "Current Month is " << month << endl;
             // cout << "Current Year is " << year << endl;
             printCalendar(month,year);
-
-
+        else if (reponse == "N" || response == "n"){
+            cout << "Please" << endl;
+        }
+        else{
+            cout << "That was not" << endl;
+        }
         }
         cin >> response;
     }
