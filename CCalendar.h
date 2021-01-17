@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <ctime>
+#include <string.h> 
+#include <stdio.h>
 using namespace std;
 /* 
 ZELLERS CONGRUENCE
@@ -48,20 +50,19 @@ bool checkDayExists(int day, int month, int year){
     return false;
 }
 
-string getToday(){
-    string dateData;
-    time_t today = time(0);
-    char* dt = ctime(&today);
-    cout << dt << endl; 
-    return dt;
-    //Sat Jan 16 17:15:06 2021
+int getMonth(){
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    return 1 + ltm->tm_mon;
 }
 
-int getDayOfWeek (int day, int month, int year){
-    return 0;
+int getYear(){
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    return 1900 + ltm->tm_year;
 }
 
-bool printMonthofYear(int month, int year){
+bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month] << " of Year " << year << endl;
     return true;
@@ -75,12 +76,14 @@ bool runCalendar(){
     string response;
     cin >> response;
     while(response != "Q" && response != "q"){
+        int month = 0;
+        int year = 0;
         if (response == "Y" || response == "y"){
             cout << "Using Today's Date:" << endl;
-            string today = getToday();
-            int count = 0;
-            string month;
-            string year;
+            month = getMonth();
+            cout << "Current Month is " << getMonth() << endl;
+            cout << "Current Year is " << getYear() << endl;
+            printCalendar(month,year);
 
 
         }
