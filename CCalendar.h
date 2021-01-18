@@ -107,9 +107,23 @@ bool runCalendar(){
         }
         else if (response == "N" || response == "n"){
             cout << "Please input the date of the month that you would like to view." << endl;
-            cout << "Input the number of the month you would like to view." << endl << 
-            "[1] January\n[2] February\n[3] March\n[4] April\n[5] May\n[6] June\n[7] July\n[8] August\n[9] September\n[10] October\n[11] November\n[12] December\n";
             string responseMonth;
+            while (responseMonth == ""){
+                try{
+                    cout << "Input the number of the month you would like to view." << endl << 
+                    "[1] January\n[2] February\n[3] March\n[4] April\n[5] May\n[6] June\n[7] July\n[8] August\n[9] September\n[10] October\n[11] November\n[12] December\n";
+                    cin >> responseMonth;
+                    month = stoi(responseMonth);
+                    if (month <= 0 || month >= 13){
+                        throw;
+                    }
+                }
+                catch (invalid_argument e){
+                    cout << "That was not a valid number";
+                    responseMonth = "";
+                }
+            }
+            string responseYear;
         }
         else{ //invalid response
             cout << "That was not a valid response. Please input a valid response." << endl;
