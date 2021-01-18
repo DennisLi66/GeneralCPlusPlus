@@ -104,13 +104,19 @@ bool runCalendar(){
             // cout << "Current Month is " << month << endl;
             // cout << "Current Year is " << year << endl;
             printCalendar(month,year);
-        else if (reponse == "N" || response == "n"){
-            cout << "Please" << endl;
         }
-        else{
-            cout << "That was not" << endl;
+        else if (response == "N" || response == "n"){
+            cout << "Please input the date of the month that you would like to view." << endl;
+            cout << "Input the number of the month you would like to view." << endl << 
+            "[1] January\n[2] February\n[3] March\n[4] April\n[5] May\n[6] June\n[7] July\n[8] August\n[9] September\n[10] October\n[11] November\n[12] December\n";
+            string responseMonth;
         }
+        else{ //invalid response
+            cout << "That was not a valid response. Please input a valid response." << endl;
+            cout << "[Y] will bring up the current month." << endl << "[N] will allow you to select a month of your choosing." << endl;
+            cout << "[Q] will quit the application" << endl;
         }
+        
         cin >> response;
     }
     cout << "Quitting Calendar Application..." << endl;
