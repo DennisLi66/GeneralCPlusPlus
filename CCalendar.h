@@ -128,6 +128,10 @@ bool runCalendar(){
                 try{
                     cout << "Input the year in A.D. you would like to view.\n I.E. Type in 2021 to view the year 2021." << endl;
                     cin >> responseYear;
+                    year = stoi(responseYear);
+                    if (year <= 0){
+                        throw;
+                    }
                     
                 }
                 catch (invalid_argument e){
