@@ -119,11 +119,21 @@ bool runCalendar(){
                     }
                 }
                 catch (invalid_argument e){
-                    cout << "That was not a valid number";
+                    cout << "That was not a valid month";
                     responseMonth = "";
                 }
             }
             string responseYear;
+            while (responseYear == ""){
+                try{
+                    cout << "Input the year in A.D. you would like to view.\n I.E. Type in 2021 to view the year 2021." << endl;
+                    
+                }
+                catch (invalid_argument e){
+                    cout << "That was not a valid year";
+                    responseMonth = "";
+                }
+            }
         }
         else{ //invalid response
             cout << "That was not a valid response. Please input a valid response." << endl;
