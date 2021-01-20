@@ -112,7 +112,6 @@ int getMonthEnd(int month,int year){
     }
     return -1;
 }
-
 bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month-1] << " of Year " << year << endl;
@@ -196,6 +195,28 @@ bool runCalendar(){
                 }
             }
             printCalendar(month,year);
+            string response2 = "";
+            while (response2 != "Q" && response2 != "q"){
+                cout << "Press:\n[1]: 1 Year Backwards\n[2]: 1 Month Backwards\n[3]: 1 Month Forwards\n[4]: 1 Year Forwards\n[Q]: Quit to Choosing Date"<< endl;
+                cin >> response2;
+                if (response == "1"){
+                    if (year == 1){
+                        cout << "Cannot go back any further." << endl;
+                    }
+                    else{
+                        year--;
+                        printCalendar(month,year);
+                        }
+                }
+                else if (response == 2){}
+                else if (response == "Q" || response == "q"){}
+                else if (response == 3){}
+                else if (response == 4){}
+                else{
+                    response2 = "";
+                    cout << "That was not a valid response." << endl;
+                }
+            }
         }
         else{ //invalid response
             cout << "That was not a valid response. Please input a valid response." << endl;
