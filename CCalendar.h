@@ -83,7 +83,7 @@ bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month-1] << " of Year " << year << endl;
     cout << "  S  M  T  W  T  F  S  " << endl;
-    // cout << zellersCongruence(2,2021) << endl;
+    cout << zellersCongruence(month,year) << endl;
     return true;
 }
 
@@ -139,6 +139,7 @@ bool runCalendar(){
                     responseMonth = "";
                 }
             }
+            printCalendar(month,year);
         }
         else{ //invalid response
             cout << "That was not a valid response. Please input a valid response." << endl;
