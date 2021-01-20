@@ -64,17 +64,28 @@ int getYear(){
     tm *ltm = localtime(&now);
     return 1900 + ltm->tm_year;
 }
-int zellersCongruence(int month, int year){
+int zellersCongruence(int monthh, int yearr){
     int final = 0;
-    string days[] = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    int month = monthh;
+    int year = yearr;
+    if (monthh == 1){
+        month = 13;
+        year--;
+    }
+    if (monthh == 2){
+        month = 14;
+        year--;
+    }
+    string days[] = {"Blank","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
     final += 1; //step 1
     final += ((13 * (month + 1))/5); //step 2
     final += (year%100); //step 3
     final += (year%100)/4; //step 4
     final += (year/100)/4; //step 5
     final += 5 * (year/100); //step 6
-    final = final%7;
+    final = final % 7;
     // cout << final << "=" << 1 << " + " << ((13 * (month + 1))/5) << " + " << year % 100 << " + " << (year % 100)/4 <<  " + " << (year/100)/4 << " + " << 5 * (year/100) << endl;
+    // cout << days << endl;
     cout << days[final] << endl;
     return final;
 }
@@ -83,7 +94,8 @@ bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month-1] << " of Year " << year << endl;
     cout << "  S  M  T  W  T  F  S  " << endl;
-    cout << zellersCongruence(month,year) << endl;
+    int start = 0;
+    start = zellersCongruence(month,year);
     return true;
 }
 
