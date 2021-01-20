@@ -14,6 +14,8 @@ q is the day of the month
 m is the month (3 = March, 4 = April, 5 = May, ..., 14 = February)
 K the year of the century (year mod 100)
 J is the zero-based century (first two numbers of year) or (year / 100)
+if month is january month is 13 and year is decremented
+if month is february month is 14 and year is decremented
 
 LEAP YEARS
 if (year is not divisible by 4) then (it is a common year)
@@ -114,9 +116,30 @@ int getMonthEnd(int month,int year){
 bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month-1] << " of Year " << year << endl;
-    cout << "  S  M  T  W  T  F  S  " << endl;
-    int start = 0;
-    start = zellersCongruence(month,year);
+    cout << "S  M  T  W  T  F  S" << endl;
+    int weekday = 0;
+    int end = 0;
+    int current = 1;
+    weekday = zellersCongruence(month,year);
+    end = getMonthEnd(month,year);
+    for (int i = 1; i < weekday; i++){
+        cout << "   ";
+    }
+    while (current <= end){
+        if (weekday == 8){
+            weekday = 1;
+            cout << endl;
+        }
+        if (current < 10){
+            cout << current << "  ";
+        }
+        else{
+            cout << current << " ";
+        }
+        current++;
+        weekday++;
+    }
+    cout << endl;
     return true;
 }
 
@@ -179,8 +202,10 @@ bool runCalendar(){
             cout << "[Y] will bring up the current month." << endl << "[N] will allow you to select a month of your choosing." << endl;
             cout << "[Q] will quit the application" << endl;
         }
-        
-        cin >> response;
+            cout << "Would you like to look at the current month?" << endl << "Pressing:" << endl;
+            cout << "[Y] will bring up the current month." << endl << "[N] will allow you to select a month of your choosing." << endl;
+            cout << "[Q] will quit the application" << endl;
+            cin >> response;
     }
     cout << "Quitting Calendar Application..." << endl;
     return true;
