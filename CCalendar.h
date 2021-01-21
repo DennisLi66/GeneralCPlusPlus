@@ -144,7 +144,6 @@ bool printCalendar(int month, int year){
     cout << endl;
     return true;
 }
-
 bool runCalendar(){
     cout << "Welcome to the Calendar Application." << endl;
     cout << "Would you like to look at the current month?" << endl << "Pressing:" << endl;
@@ -308,12 +307,6 @@ bool runCalendar(){
     cout << "Quitting Calendar Application..." << endl;
     return true;
 }
-
-
-
-
-
-
 
 
 #endif
