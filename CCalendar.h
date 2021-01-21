@@ -78,7 +78,7 @@ int zellersCongruence(int monthh, int yearr){
         month = 14;
         year--;
     }
-    string days[] = {"Blank","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+    string days[] = {"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"};
     final += 1; //step 1
     final += ((13 * (month + 1))/5); //step 2
     final += (year%100); //step 3
@@ -89,6 +89,9 @@ int zellersCongruence(int monthh, int yearr){
     // cout << final << "=" << 1 << " + " << ((13 * (month + 1))/5) << " + " << year % 100 << " + " << (year % 100)/4 <<  " + " << (year/100)/4 << " + " << 5 * (year/100) << endl;
     // cout << days << endl;
     // cout << days[final] << endl;
+    if (final == 0){
+        return 7;
+    }
     return final;
 }
 int getMonthEnd(int month,int year){
@@ -116,7 +119,7 @@ bool printCalendar(int month, int year){
     string months[] = {"January","February","March","April","May","June","July","August","September","October","November","December"};
     cout << months[month-1] << " of Year " << year << endl;
     cout << "S  M  T  W  T  F  S" << endl;
-    int weekday = 0;
+    int weekday = 1;
     int end = 0;
     int current = 1;
     weekday = zellersCongruence(month,year);
@@ -159,6 +162,54 @@ bool runCalendar(){
             // cout << "Current Month is " << month << endl;
             // cout << "Current Year is " << year << endl;
             printCalendar(month,year);
+            string response2 = "";
+            while (response2 != "Q" && response2 != "q"){
+                cout << "Press:\n[1]: 1 Year Backwards\n[2]: 1 Month Backwards\n[3]: 1 Month Forwards\n[4]: 1 Year Forwards\n[Q]: Quit to Choosing Date"<< endl;
+                cin >> response2;
+                if (response2 == "1"){
+                    if (year == 1){
+                        cout << "Cannot go back any further." << endl;
+                    }
+                    else{
+                        year--;
+                        printCalendar(month,year);
+                        }
+                }
+                else if (response2 == "2"){
+                    if (month == 1 && year == 1){
+                        cout << "Cannot go back any further." << endl;
+                    }
+                    else if (month == 1){
+                        month = 12;
+                        year--;
+                        printCalendar(month,year);
+                    }
+                    else{
+                        month--;
+                        printCalendar(month,year);
+                    }
+                }
+                else if (response2 == "Q" || response2 == "q"){}
+                else if (response2 == "3"){
+                    if (month == 12){
+                        month = 1;
+                        year++;
+                        printCalendar(month,year);
+                    }
+                    else{
+                        month++;
+                        printCalendar(month,year);
+                    }
+                }
+                else if (response2 == "4"){
+                    year++;
+                    printCalendar(month,year);
+                }
+                else{
+                    response2 = "";
+                    cout << "That was not a valid response." << endl;
+                }
+            } 
         }
         else if (response == "N" || response == "n"){
             cout << "Please input the date of the month that you would like to view." << endl;
@@ -174,7 +225,7 @@ bool runCalendar(){
                     }
                 }
                 catch (invalid_argument e){
-                    cout << "That was not a valid month.";
+                    cout << "That was not a valid month.\n";
                     responseMonth = "";
                 }
             }
@@ -199,7 +250,7 @@ bool runCalendar(){
             while (response2 != "Q" && response2 != "q"){
                 cout << "Press:\n[1]: 1 Year Backwards\n[2]: 1 Month Backwards\n[3]: 1 Month Forwards\n[4]: 1 Year Forwards\n[Q]: Quit to Choosing Date"<< endl;
                 cin >> response2;
-                if (response == "1"){
+                if (response2 == "1"){
                     if (year == 1){
                         cout << "Cannot go back any further." << endl;
                     }
@@ -208,10 +259,36 @@ bool runCalendar(){
                         printCalendar(month,year);
                         }
                 }
-                else if (response == 2){}
-                else if (response == "Q" || response == "q"){}
-                else if (response == 3){}
-                else if (response == 4){}
+                else if (response2 == "2"){
+                    if (month == 1 && year == 1){
+                        cout << "Cannot go back any further." << endl;
+                    }
+                    else if (month == 1){
+                        month = 12;
+                        year--;
+                        printCalendar(month,year);
+                    }
+                    else{
+                        month--;
+                        printCalendar(month,year);
+                    }
+                }
+                else if (response2 == "Q" || response2 == "q"){}
+                else if (response2 == "3"){
+                    if (month == 12){
+                        month = 1;
+                        year++;
+                        printCalendar(month,year);
+                    }
+                    else{
+                        month++;
+                        printCalendar(month,year);
+                    }
+                }
+                else if (response2 == "4"){
+                    year++;
+                    printCalendar(month,year);
+                }
                 else{
                     response2 = "";
                     cout << "That was not a valid response." << endl;
