@@ -2,7 +2,7 @@
 #define CGrades_H
 
 #include <iostream>
-#include 
+#include <mysql/jdbc.h>
 
 using namespace std;
 /* 
